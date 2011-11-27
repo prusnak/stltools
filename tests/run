@@ -3,4 +3,4 @@
 ../stlvolume ./cube.stl
 ../stlvolume ./sphere.stl
 ../stlvolume ./sphere-cube.stl
-../stlvolume ./sphere-cube2.stl
+../stlvolume ./sphere-rod.stl
