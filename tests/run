@@ -1,0 +1,4 @@
+#!/bin/sh
+
+../stlvolume ./cube.stl
+../stlvolume ./sphere.stl

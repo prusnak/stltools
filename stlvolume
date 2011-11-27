@@ -1,0 +1,15 @@
+#!/usr/bin/python
+
+import sys
+from stl import STL
+
+if len(sys.argv) < 2:
+  print >> sys.stderr, 'Usage: stlvolume filename.stl'
+  sys.exit(1)
+
+s = STL()
+s.load(sys.argv[1])
+s.calcVolume()
+
+print 'volume = ', s.volume, 'mm^3'
+print 'weight = ', s.volume * 0.0012, 'g'  # density = 1.2 g/cm^3
