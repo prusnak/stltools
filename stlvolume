@@ -11,5 +11,6 @@ s = STL()
 s.load(sys.argv[1])
 s.calcVolume()
 
-print 'volume = ', s.volume, 'mm^3'
-print 'weight = ', s.volume * 0.0012, 'g'  # density = 1.2 g/cm^3
+print 'center = (', s.xCenter, ',', s.yCenter, ',', s.zCenter, ')'
+print 'volume =', s.volume, 'mm^3'
+print 'weight =', s.volume * 0.0012, 'g'  # density = 1.2 g/cm^3
