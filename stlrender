@@ -1,0 +1,23 @@
+#!/usr/bin/python
+
+import sys
+from stl import STL
+
+if len(sys.argv) < 2:
+  print >> sys.stderr, 'Usage: stlrender filename.stl'
+  sys.exit(1)
+
+s = STL()
+s.load(sys.argv[1])
+
+depths = {}
+
+for i,f in enumerate(s.facets):
+  t1 = (f.v1x + f.v2x + f.v3x) / 3
+  t2 = (f.v1y + f.v2y + f.v3y) / 3
+  t3 = (f.v1z + f.v2z + f.v3z) / 3
+  d = t1 + t2 + t3
+  depths[i] = d
+
+for k,v in sorted(depths.iteritems(), key=lambda (k,v): (v,k)):
+  print k,v

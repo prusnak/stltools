@@ -17,10 +17,16 @@ class Facet:
 class STL:
 
   facets = []
-  facet = None
-  state = 0
+  minx = +1e9
+  maxx = -1e9
+  miny = +1e9
+  maxy = -1e9
+  minz = +1e9
+  maxz = -1e9
 
   def load(self, filename):
+    facet = None
+    state = 0
     f = open(filename, 'r')
     for l in f.readlines():
       l = l.strip().split(' ')
@@ -33,18 +39,27 @@ class STL:
         facet.nz = float(l[4])
         state = 0
       if l[0] == 'vertex':
+        x = float(l[1])
+        y = float(l[2])
+        z = float(l[3])
+        if x < self.minx: self.minx = x
+        if y < self.miny: self.miny = y
+        if z < self.minz: self.minz = z
+        if x > self.maxx: self.maxx = x
+        if y > self.maxy: self.maxy = y
+        if z > self.maxz: self.maxz = z
         if state == 0:
-          facet.v1x = float(l[1])
-          facet.v1y = float(l[2])
-          facet.v1z = float(l[3])
+          facet.v1x = x
+          facet.v1y = y
+          facet.v1z = z
         elif state == 1:
-          facet.v2x = float(l[1])
-          facet.v2y = float(l[2])
-          facet.v2z = float(l[3])
+          facet.v2x = x
+          facet.v2y = y
+          facet.v2z = z
         elif state == 2:
-          facet.v3x = float(l[1])
-          facet.v3y = float(l[2])
-          facet.v3z = float(l[3])
+          facet.v3x = x
+          facet.v3y = y
+          facet.v3z = z
         state += 1
       if l[0] == 'endfacet' and facet != None:
         self.facets.append(facet)
